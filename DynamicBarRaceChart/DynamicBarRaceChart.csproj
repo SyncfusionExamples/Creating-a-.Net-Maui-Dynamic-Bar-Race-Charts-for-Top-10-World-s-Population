@@ -61,10 +61,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Remove="Resources\Raw\populationdata.csv" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <EmbeddedResource Include="Resources\Raw\populationdata.csv">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </EmbeddedResource>
@@ -74,8 +70,8 @@
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
-		<PackageReference Include="Syncfusion.Maui.Charts" Version="*" />
-		<PackageReference Include="Syncfusion.Maui.ProgressBar" Version="*" />
+		<PackageReference Include="Syncfusion.Maui.Charts" Version="23.2.7" />
+		<PackageReference Include="Syncfusion.Maui.ProgressBar" Version="23.2.7" />
 	</ItemGroup>
 
 </Project>

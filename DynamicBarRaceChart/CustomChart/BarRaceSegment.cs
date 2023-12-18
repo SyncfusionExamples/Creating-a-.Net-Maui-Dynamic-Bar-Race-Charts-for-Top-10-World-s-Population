@@ -1,4 +1,6 @@
-﻿using Syncfusion.Maui.Charts;
+﻿
+using Microsoft.Maui.Graphics;
+using Syncfusion.Maui.Charts;
 
 namespace DynamicBarRaceChart
 {
