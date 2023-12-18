@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DynamicBarRaceChart.MainPage"
+             xmlns:chart="clr-namespace:Syncfusion.Maui.Charts;assembly=Syncfusion.Maui.Charts"
+             xmlns:progress="clr-namespace:Syncfusion.Maui.ProgressBar;assembly=Syncfusion.Maui.ProgressBar"
+             xmlns:local="clr-namespace:DynamicBarRaceChart">
+
+    <ContentPage.BindingContext>
+        <local:ViewModel x:Name="viewModel"/>
+    </ContentPage.BindingContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="80" />
+        </Grid.RowDefinitions>
+
+        <chart:SfCartesianChart Grid.Row="0"  EnableSideBySideSeriesPlacement="False" IsTransposed="True">
+            <chart:SfCartesianChart.Title>
+                <HorizontalStackLayout  Margin="10,10,0,10">
+                    <Border Margin="10,0,0,10" Stroke="Transparent" BackgroundColor="DarkBlue" WidthRequest="20" HeightRequest="70"/>
+                    <VerticalStackLayout  HeightRequest="70"  Margin="10,0,0,10">
+                        <Label VerticalOptions="Start" Text="Demographic Statistics | Top 10 World's Total Population" Padding="10,5,5,0" FontSize="20" FontAttributes="Bold" >
+                        </Label>
+                        <Label VerticalOptions="Start" Text="Since 1960 to 2021"  Padding="10,5,5,0" FontSize="15" FontAttributes="Bold" >
+                        </Label>
+                    </VerticalStackLayout>
+                </HorizontalStackLayout>
+
+            </chart:SfCartesianChart.Title>
+            <chart:SfCartesianChart.PlotAreaBackgroundView>
+                <AbsoluteLayout ZIndex="100">
+                    <Border AbsoluteLayout.LayoutBounds="1,0.8,220,110"
+              AbsoluteLayout.LayoutFlags="PositionProportional"  Stroke="Transparent">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="5" />
+                        </Border.StrokeShape>
+                        <Label TextColor="Black" Text="{Binding Year}" Padding="10,5,5,0" FontSize="50" FontAttributes="Bold" >
+
+                        </Label>
+                    </Border>
+                </AbsoluteLayout>
+            </chart:SfCartesianChart.PlotAreaBackgroundView>
+            <chart:SfCartesianChart.YAxes>
+                <chart:NumericalAxis  PlotOffsetStart="110" LabelCreated="NumericalAxis_LabelCreated"  RangePadding="AppendInterval"  >
+                    <chart:NumericalAxis.MajorTickStyle>
+                        <chart:ChartAxisTickStyle TickSize="0" />
+                    </chart:NumericalAxis.MajorTickStyle>
+                    <chart:NumericalAxis.AxisLineStyle>
+                        <chart:ChartLineStyle StrokeWidth="0" />
+                    </chart:NumericalAxis.AxisLineStyle>
+                </chart:NumericalAxis>
+            </chart:SfCartesianChart.YAxes>
+            <chart:SfCartesianChart.XAxes>
+                <chart:NumericalAxis IsInversed="True" IsVisible="False"  AutoScrollingDelta="10" AutoScrollingMode="Start" Interval="1" ShowMajorGridLines="False"  />
+            </chart:SfCartesianChart.XAxes>
+            <local:BarRaceSeries CornerRadius="0,100,0,100" EnableAnimation="True" ItemsSource="{Binding Data}" XBindingPath="Ranking" YBindingPath="YValue" >
+            </local:BarRaceSeries>
+        </chart:SfCartesianChart>
+        <Border Stroke="Transparent"  Margin="20,0,0,10" Grid.Row="1" Padding="5">
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Column="0" WidthRequest="45" HeightRequest="45" Stroke="Blue" BackgroundColor="White" >
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                    </Border.GestureRecognizers>
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="10" />
+                    </Border.StrokeShape>
+                    <Label x:Name="text" Text="{Binding ProgressString}" TextColor="Blue" HorizontalOptions="Center" VerticalOptions="Center" />
+                </Border>
+                <progress:SfLinearProgressBar Margin="10,20,0,0" Grid.Column="1" Minimum="{Binding StartYear}" Maximum="{Binding EndYear}" Progress="{Binding Year}" 
+                              TrackHeight="10" 
+                              TrackCornerRadius="5"
+                              ProgressHeight="10"
+                              ProgressCornerRadius="5" />
+            </Grid>
+        </Border>
+    </Grid>
+
+</ContentPage>
