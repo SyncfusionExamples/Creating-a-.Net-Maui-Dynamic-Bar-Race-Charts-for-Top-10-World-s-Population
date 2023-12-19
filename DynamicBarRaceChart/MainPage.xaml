@@ -12,22 +12,21 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />
-            <RowDefinition Height="80" />
+            <RowDefinition Height="{OnPlatform iOS='60', Android='60', Default= '80'}" />
         </Grid.RowDefinitions>
-
-        <chart:SfCartesianChart Grid.Row="0"  EnableSideBySideSeriesPlacement="False" IsTransposed="True">
+        <chart:SfCartesianChart Margin="{OnPlatform iOS='-30,0,0,0', Android='0,0,0,0', Default='0'}" Grid.Row="0" EnableSideBySideSeriesPlacement="False" IsTransposed="True">
             <chart:SfCartesianChart.Title>
-                <HorizontalStackLayout  Margin="10,10,0,10">
-                    <Border Margin="10,0,0,10" Stroke="Transparent" BackgroundColor="DarkBlue" WidthRequest="20" HeightRequest="70"/>
-                    <VerticalStackLayout  HeightRequest="70"  Margin="10,0,0,10">
-                        <Label VerticalOptions="Start" Text="Demographic Statistics | Top 10 World's Total Population" Padding="10,5,5,0" FontSize="20" FontAttributes="Bold" >
+                <HorizontalStackLayout Margin="{OnPlatform iOS='0,5,0,5', Android='20,5,0,5', Default= '10,10,0,10'}">
+                    <BoxView Margin="{OnPlatform iOS='0,10,0,5', Android='0,0,0,0', Default= '10,0,0,10'}" BackgroundColor="DarkBlue" WidthRequest="20" HeightRequest="{OnPlatform iOS='60', Android='50', Default= '70'}"/>
+                    <VerticalStackLayout HeightRequest="{OnPlatform iOS='40', Android='40', Default= '70'}"  Margin="{OnPlatform iOS='0,0,0,10', Android='0,-10,0,0', Default= '10,0,0,10'}">
+                        <Label VerticalOptions="Start" Text="Demographic Statistics | Top 10 World's Total Population" Padding="{OnPlatform iOS='5,0,5,0', Android='5,0,5,0', Default= '10,5,5,0'}" FontSize="20" FontAttributes="Bold" >
                         </Label>
-                        <Label VerticalOptions="Start" Text="Since 1960 to 2021"  Padding="10,5,5,0" FontSize="15" FontAttributes="Bold" >
+                        <Label VerticalOptions="Start" Text="Since 1960 to 2021"  Padding="{OnPlatform iOS='5,5,5,0', Android='5,0,5,0', Default= '10,5,5,0'}" FontSize="15" FontAttributes="Bold" >
                         </Label>
                     </VerticalStackLayout>
                 </HorizontalStackLayout>
-
             </chart:SfCartesianChart.Title>
+
             <chart:SfCartesianChart.PlotAreaBackgroundView>
                 <AbsoluteLayout ZIndex="100">
                     <Border AbsoluteLayout.LayoutBounds="1,0.8,220,110"
@@ -35,8 +34,7 @@
                         <Border.StrokeShape>
                             <RoundRectangle CornerRadius="5" />
                         </Border.StrokeShape>
-                        <Label TextColor="Black" Text="{Binding Year}" Padding="10,5,5,0" FontSize="50" FontAttributes="Bold" >
-
+                        <Label TextColor="Black" Text="{Binding Year}" Padding="10,5,5,0" FontSize="{OnPlatform Default='50', iOS='30', Android='30'}" FontAttributes="Bold" >
                         </Label>
                     </Border>
                 </AbsoluteLayout>
@@ -57,14 +55,14 @@
             <local:BarRaceSeries CornerRadius="0,100,0,100" EnableAnimation="True" ItemsSource="{Binding Data}" XBindingPath="Ranking" YBindingPath="YValue" >
             </local:BarRaceSeries>
         </chart:SfCartesianChart>
-        <Border Stroke="Transparent"  Margin="20,0,0,10" Grid.Row="1" Padding="5">
-            <Grid >
+        <Border Stroke="Transparent" Margin="{OnPlatform iOS='0,5,0,0', Android='0,5,0,0', Default= '20,0,0,10'}" Grid.Row="1" Padding="5">
+            <Grid WidthRequest="{OnPlatform iOS='810',Android='810', WinUI='1200'}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="50" />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
-                <Border Grid.Column="0" WidthRequest="45" HeightRequest="45" Stroke="Blue" BackgroundColor="White" >
+                <Border Grid.Column="0" WidthRequest="45" HeightRequest="{OnPlatform Android='40', Default='45'}" Padding="{OnPlatform Default='0,5,0,0', Android='0'}" Stroke="Blue" BackgroundColor="White">
                     <Border.GestureRecognizers>
                         <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
                     </Border.GestureRecognizers>
@@ -73,11 +71,11 @@
                     </Border.StrokeShape>
                     <Label x:Name="text" Text="{Binding ProgressString}" TextColor="Blue" HorizontalOptions="Center" VerticalOptions="Center" />
                 </Border>
-                <progress:SfLinearProgressBar Margin="10,20,0,0" Grid.Column="1" Minimum="{Binding StartYear}" Maximum="{Binding EndYear}" Progress="{Binding Year}" 
-                              TrackHeight="10" 
-                              TrackCornerRadius="5"
-                              ProgressHeight="10"
-                              ProgressCornerRadius="5" />
+                <progress:SfLinearProgressBar Margin="{OnPlatform iOS='0,20,0,0', Android='0,20,0,0', Default= '10,20,0,0'}" Grid.Column="1" Minimum="{Binding StartYear}" Maximum="{Binding EndYear}" Progress="{Binding Year}" 
+                                 TrackHeight="10" 
+                                 TrackCornerRadius="5"
+                                 ProgressHeight="10"
+                                 ProgressCornerRadius="5" />
             </Grid>
         </Border>
     </Grid>
