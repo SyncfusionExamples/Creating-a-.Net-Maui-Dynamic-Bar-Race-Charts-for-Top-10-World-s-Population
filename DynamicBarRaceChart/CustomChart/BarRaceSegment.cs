@@ -1,12 +1,20 @@
-﻿
-using Microsoft.Maui.Graphics;
-using Syncfusion.Maui.Charts;
+﻿using Syncfusion.Maui.Charts;
+using Syncfusion.Maui.Graphics.Internals;
 
 namespace DynamicBarRaceChart
 {
-    public class BarRaceSegment : ColumnSegment
+    public class BarRaceSegment : ColumnSegment, ITextElement
     {
         public Model Item { get; set; }
+        public FontAttributes FontAttributes => FontAttributes.None;
+
+        public string FontFamily => Font.Family != null ? Font.Family : string.Empty;
+
+        public double FontSize => 12;
+        public Microsoft.Maui.Font Font => Microsoft.Maui.Font.Default;
+
+        private Color _textColor = Colors.Black;
+        public Color TextColor { get => _textColor; set => _textColor = value; }
 
         private string xString = string.Empty;
 
@@ -20,7 +28,7 @@ namespace DynamicBarRaceChart
 
                 if (index >= 0 && series.PreviousSegments != null && series.PreviousSegments.Count > 0 && series.PreviousSegments.Count > index)
                 {
-                    var previousSegment = series.PreviousSegments[index] as BarRaceSegment;
+                    BarRaceSegment? previousSegment = series.PreviousSegments[index] as BarRaceSegment;
                     if (previousSegment != null)
                     {
                         float previousTop = previousSegment.Top;
@@ -60,16 +68,12 @@ namespace DynamicBarRaceChart
                                     canvas.FillRectangle(rect);
                                 }
 
-                                canvas.DrawString(xString, (float)rect.Left - 5, (float)Math.Round(rect.Center.Y), HorizontalAlignment.Right);
+                                float textWidth = (float)series.ActualYAxis.PlotOffsetStart;
+                                canvas.DrawText(xString, new Rect(rect.Left - textWidth - 2, rect.Top - 2, textWidth, rect.Height), HorizontalAlignment.Right, VerticalAlignment.Center, this);
 
-                                if (AnimatedValue == 1)
-                                    canvas.DrawString(Item.YValue.ToString("#,###,###,###"), (float)rect.Right + 2, (float)rect.Center.Y + 2, HorizontalAlignment.Left);
-                                else
-                                    canvas.DrawString(GetColumnDynamicAnimationValue(AnimatedValue, previousSegment.Item.YValue, Item.YValue).ToString("#,###,###,###"), (float)rect.Right + 2, (float)rect.Center.Y + 2, HorizontalAlignment.Left);
+                                string yValueString = AnimatedValue == 1 ? Item.YValue.ToString("#,###,###,###") : GetColumnDynamicAnimationValue(AnimatedValue, previousSegment.Item.YValue, Item.YValue).ToString("#,###,###,###");
 
-                            }
-                            else
-                            {
+                                canvas.DrawText(yValueString, new Rect(rect.Right + 2, rect.Top - 2, textWidth, rect.Height), HorizontalAlignment.Left, VerticalAlignment.Center, this);
 
                             }
                         }
@@ -91,10 +95,12 @@ namespace DynamicBarRaceChart
                                 canvas.FillRectangle(rect);
                             }
 
-                            canvas.DrawString(previousSegment.xString, (float)rect.Left - 5, (float)Math.Round(rect.Center.Y), HorizontalAlignment.Right);
+                            float textWidth = (float)series.ActualYAxis.PlotOffsetStart;
+                            canvas.DrawText(xString, new Rect(rect.Left - textWidth - 2, rect.Top - 2, textWidth, rect.Height), HorizontalAlignment.Right, VerticalAlignment.Center, this);
 
-                            canvas.DrawString(previousSegment.Item.YValue.ToString("#,###,###,###"), (float)rect.Right + 2, (float)rect.Center.Y + 2, HorizontalAlignment.Left);
+                            string yValueString = AnimatedValue == 1 ? previousSegment.xString : previousSegment.Item.YValue.ToString("#,###,###,###");
 
+                            canvas.DrawText(yValueString, new Rect(rect.Right + 2, rect.Top - 2, textWidth, rect.Height), HorizontalAlignment.Left, VerticalAlignment.Center, this);
                         }
                     }
                 }
@@ -115,6 +121,31 @@ namespace DynamicBarRaceChart
             {
                 return double.IsNaN(oldValue) ? (float)currentValue * animationValue : (float)(oldValue - (oldValue * animationValue));
             }
+        }
+
+        public void OnFontFamilyChanged(string oldValue, string newValue)
+        {
+
+        }
+
+        public void OnFontSizeChanged(double oldValue, double newValue)
+        {
+
+        }
+
+        public double FontSizeDefaultValueCreator()
+        {
+            return 0;
+        }
+
+        public void OnFontAttributesChanged(FontAttributes oldValue, FontAttributes newValue)
+        {
+
+        }
+
+        public void OnFontChanged(Microsoft.Maui.Font oldValue, Microsoft.Maui.Font newValue)
+        {
+
         }
     }
 }
