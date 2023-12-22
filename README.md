@@ -2,7 +2,8 @@
 Bar Race Charts are effective tools for demonstrating changes in data over a period. Syncfusion .Net  MAUI Charts can easily create dynamic and interactive Bar Race Charts that captivate audiences and convey valuable insights by summarizing a large data set in a live visual bar graph, with bars racing to the top based on rankings.
 This sample demonstrates how to create a .Net Maui Dynamic Bar Race Charts for Top 10 World’s Population
 
-![BarRaceWindowsgif](https://github.com/SyncfusionExamples/Creating-a-.Net-Maui-Dynamic-Bar-Race-Charts-for-Top-10-World-s-Population/assets/105496706/dcf4ee46-35ae-4435-a955-3d1f017d4df9)
+![BarRaceChart_Introduction 1](https://github.com/SyncfusionExamples/Creating-a-.Net-Maui-Dynamic-Bar-Race-Charts-for-Top-10-World-s-Population/assets/105496706/107f8161-ed2b-4cca-bd3b-b1a82b62d1f1)
+
 
 
 ## Step 1: Gather data for the world population 
@@ -313,7 +314,7 @@ Refer to the following code example to customize the chart title.
      <HorizontalStackLayout Margin="{OnPlatform iOS='0,5,0,5', Android='20,5,0,5', Default= '10,10,0,10'}">
          <BoxView Margin="{OnPlatform iOS='0,10,0,5', Android='0,0,0,0', Default= '10,0,0,10'}" BackgroundColor="DarkBlue" WidthRequest="20" HeightRequest="{OnPlatform iOS='60', Android='50', Default= '70'}"/>
          <VerticalStackLayout HeightRequest="{OnPlatform iOS='40', Android='40', Default= '70'}"  Margin="{OnPlatform iOS='0,0,0,10', Android='0,-10,0,0', Default= '10,0,0,10'}">
-             <Label VerticalOptions="Start" Text="Demographic Statistics | Top 10 World's Total Population" Padding="{OnPlatform iOS='5,0,5,0', Android='5,0,5,0', Default= '10,5,5,0'}" FontSize="20" FontAttributes="Bold" >
+             <Label VerticalOptions="Start" Text="Demographic Statistics | Top 10 Populations in the World" Padding="{OnPlatform iOS='5,0,5,0', Android='5,0,5,0', Default= '10,5,5,0'}" FontSize="20" FontAttributes="Bold" >
              </Label>
              <Label VerticalOptions="Start" Text="Since 1960 to 2021"  Padding="{OnPlatform iOS='5,5,5,0', Android='5,0,5,0', Default= '10,5,5,0'}" FontSize="15" FontAttributes="Bold" >
              </Label>
@@ -418,3 +419,6 @@ Finally, we can use the series ItemsSource to continuously update the chart with
             return true;
         }
 ```
+## Final Output
+![RaceBarChart_Final 1](https://github.com/SyncfusionExamples/Creating-a-.Net-Maui-Dynamic-Bar-Race-Charts-for-Top-10-World-s-Population/assets/105496706/62cf79ae-d668-44ba-900e-f80d744571cd)
+
