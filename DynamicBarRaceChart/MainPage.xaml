@@ -19,7 +19,7 @@
                 <HorizontalStackLayout Margin="{OnPlatform iOS='0,5,0,5', Android='20,5,0,5', Default= '10,10,0,10'}">
                     <BoxView Margin="{OnPlatform iOS='0,10,0,5', Android='0,0,0,0', Default= '10,0,0,10'}" BackgroundColor="DarkBlue" WidthRequest="20" HeightRequest="{OnPlatform iOS='60', Android='50', Default= '70'}"/>
                     <VerticalStackLayout HeightRequest="{OnPlatform iOS='40', Android='40', Default= '70'}"  Margin="{OnPlatform iOS='0,0,0,10', Android='0,-10,0,0', Default= '10,0,0,10'}">
-                        <Label VerticalOptions="Start" Text="Demographic Statistics | Top 10 World's Total Population" Padding="{OnPlatform iOS='5,0,5,0', Android='5,0,5,0', Default= '10,5,5,0'}" FontSize="20" FontAttributes="Bold" >
+                        <Label VerticalOptions="Start" Text="Demographic Statistics | Top 10 Populations in the World" Padding="{OnPlatform iOS='5,0,5,0', Android='5,0,5,0', Default= '10,5,5,0'}" FontSize="20" FontAttributes="Bold" >
                         </Label>
                         <Label VerticalOptions="Start" Text="Since 1960 to 2021"  Padding="{OnPlatform iOS='5,5,5,0', Android='5,0,5,0', Default= '10,5,5,0'}" FontSize="15" FontAttributes="Bold" >
                         </Label>
